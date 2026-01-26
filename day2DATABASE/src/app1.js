@@ -1,5 +1,6 @@
 const express = require("express");
 
+//server created here..
 const app = express();
 
 app.use(express.json());
