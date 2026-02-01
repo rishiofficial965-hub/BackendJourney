@@ -1,28 +1,31 @@
 const express = require("express");
-
+const noteModel = require("./models/notes.model");
 //server created here..
 const app = express();
 
 app.use(express.json());
 
-const notes = [];
+app.post("/notes", async (req, res) => {
+  const { title, description } = req.body;
 
-app.post("/notes", (req, res) => {
-  notes.push(req.body);
+  const note = await noteModel.create({
+    title,
+    description,
+  });
+
   res.status(201).json({
     message: "note created successfully",
+    note,
   });
 });
 
-app.get("/notes", (req, res) => {
+app.get("/notes", async (req, res) => {
+
   res.status(200).json({
-    notes:notes
-  })
+    message: "added",
+    notes: note,
+  });
+  
 });
 
-app.delete("/notes/:id",(req,res)=>{
-    let idx = req.params.id
-    delete notes[idx]
-    res.status(204).json()
-})
 module.exports = app;
