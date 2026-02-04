@@ -6,6 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+//it wil redirect it to index.html
 app.use(express.static("./public"))
 
 app.post("/api/notes", async (req, res) => {
@@ -45,6 +46,7 @@ app.patch("/api/notes/:id", async (req, res) => {
   });
 });
 
+//so at any randow url it will open frontend
 app.use("*name", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "/public/index.html")),
 );
