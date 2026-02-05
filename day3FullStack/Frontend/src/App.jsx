@@ -4,6 +4,8 @@ import axios from "axios";
 const App = () => {
   const [notes, setNotes] = useState([]);
 
+  //get method
+  //using useeffect so it only calls one time
   function fetchh() {
     axios
       .get("http://localhost:3000/api/notes")
